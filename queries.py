@@ -2,6 +2,7 @@ import data_manager
 
 
 def get_card_status(status_id):
+
     status = data_manager.execute_select(
         """
         SELECT * FROM statuses s
@@ -14,6 +15,7 @@ def get_card_status(status_id):
 
 
 def get_boards():
+
     return data_manager.execute_select(
         """
         SELECT * FROM boards
@@ -23,6 +25,7 @@ def get_boards():
 
 
 def get_cards_for_board(board_id):
+
     matching_cards = data_manager.execute_select(
         """
         SELECT * FROM cards
