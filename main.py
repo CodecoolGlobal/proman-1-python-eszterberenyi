@@ -35,6 +35,13 @@ def get_cards_for_board(board_id: int):
     return queries.get_cards_for_board(board_id)
 
 
+@app.route('/api/boards/addboard')
+@json_response
+def add_new_board():
+
+    return queries.add_new_board(title, user_id)
+
+
 def main():
     app.run(debug=True)
 
