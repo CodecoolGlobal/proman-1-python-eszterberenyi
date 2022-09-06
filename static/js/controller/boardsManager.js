@@ -15,6 +15,11 @@ export let boardsManager = {
                 "click",
                 showHideButtonHandler
             );
+            domManager.addEventListener(
+                `.board-add-button[board-data-id="${board.id}"]`,
+                'click',
+                createCardHandler
+            )
         }
     },
 };
@@ -22,4 +27,12 @@ export let boardsManager = {
 function showHideButtonHandler(clickEvent) {
     const boardId = clickEvent.target.dataset.boardId;
     cardsManager.loadCards(boardId);
+}
+
+function createCardHandler(clickEvent) {
+    const createButton = clickEvent.target
+    const boardId = createButton.dataset.boardId
+    const statusId = createButton.dataset.statusId
+    const title = createButton.previousElementSibling.value
+    dataHandler.createNewCard(title, boardId, statusId)
 }

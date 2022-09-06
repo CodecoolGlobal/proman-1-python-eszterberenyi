@@ -1,8 +1,10 @@
-from flask import Flask, render_template, url_for
-from dotenv import load_dotenv
-from util import json_response
 import mimetypes
+
+from dotenv import load_dotenv
+from flask import Flask, render_template, url_for, request
+
 import queries
+from util import json_response
 
 mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__)
@@ -31,6 +33,13 @@ def get_cards_for_board(board_id: int):
     :param board_id: id of the parent board
     """
     return queries.get_cards_for_board(board_id)
+
+
+@app.route('/api/cards/create', methods=['POST'])
+@json_response
+def create_card():
+    queries.create_card_for_board_status(request.json)
+    return render_template('index.html')
 
 
 def main():
