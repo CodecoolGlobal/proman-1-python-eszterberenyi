@@ -1,17 +1,37 @@
-from flask import Flask, render_template, url_for
+from datetime import timedelta
+from flask import Flask, render_template, url_for, session, request, redirect
 from dotenv import load_dotenv
+from psycopg2.errors import UniqueViolation
+
+import util
 from util import json_response
 import mimetypes
 import queries
 
 mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__)
+app.secret_key = b'\x1dH@\xb94\xc9\xb0\x8e\xd5\xa8\xfe\r\x00\x0c\xb4'
+app.permanent_session_lifetime = timedelta(minutes=30)
 load_dotenv()
 
 
 @app.route("/")
 def index():
     return render_template('index.html')
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        hashed_password = util.hash_password(request.form.get("pwd-register"))
+        try:
+            queries.create_user(request.form.get("username-register"), hashed_password)
+            session["username"] = request.form.get("username-register")
+            return redirect(url_for("login"))
+        except UniqueViolation:
+            response = "unsuccessful"
+            return redirect(url_for("register", attmpt=response))
+    return render_template("register.html")
 
 
 @app.route("/api/boards")
