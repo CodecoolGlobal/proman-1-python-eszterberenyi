@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Ubuntu&display=swap%27');
+
+
+
 :root {
     --border-radius: 3px;
     --status-1: #590000;
@@ -12,21 +16,25 @@
 }
 
 body {
+    font-family: 'Ubuntu', sans-serif;
     padding-bottom: 20px;
     min-width: 620px;
     background: #ddd url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/diagonal-noise.png);
-    font-family: sans-serif;
 }
 
-h1, .board-title, .board-column-title {
+h1,h3, .board-title, .board-column-title {
     font-weight: 100;
 }
 
-h1 {
+h1,h3 {
     text-align: center;
     font-size: 4em;
     letter-spacing: 5px;
     transform: scale(1.2, 1);
+}
+
+#error-message {
+    font-size: 14px;
 }
 
 button {
