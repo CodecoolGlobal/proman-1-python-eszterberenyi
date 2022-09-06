@@ -48,6 +48,6 @@ def get_user(username):
     user = data_manager.execute_select(
         """
         SELECT * FROM users
-        WHERE username = %(name)s
+        WHERE user_name = %(name)s
         """, {"name": username}, False)
     return user
