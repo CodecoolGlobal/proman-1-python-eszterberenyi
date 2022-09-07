@@ -46,7 +46,7 @@ async function apiPost(url, payload) {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
-            'Content-Type': 'applicant/json'
+            'Content-Type': 'application/json'
         }});
     console.log(payload)
     if (response.ok){

@@ -70,15 +70,14 @@ def get_cards_for_board(board_id: int):
     return queries.get_cards_for_board(board_id)
 
 
-@app.route('/api/cards/create', methods=['POST'])
+@app.route('/api/cards/create', methods=['POST', 'GET'])
 @json_response
 def create_card():
     # user_data = queries.get_user_data()
     # session['username'] = user_data['user_name']
     # user_id = queries.get_user_id_by_name(session['username'])
     print('request', request.json)
-    queries.create_card_for_board_status(request.json)
-    return redirect(url_for('get_boards'))
+    return queries.create_card_for_board_status(request.json)
 
 
 def main():
