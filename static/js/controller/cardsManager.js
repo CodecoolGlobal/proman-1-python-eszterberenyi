@@ -10,9 +10,19 @@ export let cardsManager = {
             const content = cardBuilder(card);
             domManager.addChild(`.board-column-content[data-board-id="${boardId}"][data-board-status="${card.status_id}"]`, content);
             domManager.addEventListener(
-                `.card[data-card-id="${card.id}"]>.card-remove`,
+                `.card[data-card-id="${card.id}"]`,
                 "click",
                 deleteButtonHandler
+            );
+            domManager.addEventListener(
+                `.card[data-card-id="${card.id}"]`,
+                'dragstart',
+                handleDragStart
+            );
+            domManager.addEventListener(
+                `.card[data-card-id="${card.id}"]`,
+                'dragend',
+                handleDragEnd
             );
         }
     },
@@ -22,5 +32,27 @@ function deleteButtonHandler(clickEvent) {
     const card = clickEvent.currentTarget.parentNode;
     card.classList.add('inactive');
     dataHandler.deleteCard(card.dataset.cardId);
+}
+
+
+function handleDragStart(e) {
+  this.style.opacity = '0.4';
+}
+
+function handleDragEnd(e) {
+  this.style.opacity = '1';
+}
+
+function handleDragOver(e) {
+    e.preventDefault();
+    return false;
+}
+
+function handleDragEnter(e) {
+    this.classList.add('over');
+}
+
+function handleDragLeave(e) {
+    this.classList.remove('over');
 }
 

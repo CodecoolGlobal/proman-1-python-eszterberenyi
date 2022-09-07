@@ -22,33 +22,33 @@ export function htmlFactory(template) {
 
 function boardBuilder(board) {
     return `<section class="board" data-board-id=${board.id}>
-                <div class="board-header"><span class="board-title">${board.title}</span>
-                    <button class="board-add">Add Card</button>
-                    <div class="board-remove"><i class="fas fa-trash-alt"></i></div>
-                    <button class="toggle-board-button board-toggle" data-board-id="${board.id}">Show Cards
+                <div class="board-header">
+                    <span class="board-title">${board.title}</span>
+                    <button class="board-add btn btn-dark">Add Card</button>
+                     <div class="board-remove"><i class="fas fa-trash-alt"></i></div>
+                    <button class="toggle-board-button board-toggle btn btn-dark" data-board-id="${board.id}">Show Cards
                         <i class="fas fa-chevron-down"></i>
                     </button>
-                   
                 </div>
-                <div class="board-columns">
+                <div class="board-columns" data-boardcolumns-id=${board.id} data-clicked="false">
                     <div class="board-column">
                         <div class="board-column-title">New</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="1">
+                        <div id="${board.id}-board-status-new" class="board-column-content" data-board-id="${board.id}" data-board-status="1">
                         </div>
                     </div>
                     <div class="board-column">
                         <div class="board-column-title">In progress</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="2">
+                        <div id="${board.id}-board-status-inprogress" class="board-column-content" data-board-id="${board.id}" data-board-status="2">
                         </div>
                     </div>
                     <div class="board-column">
                         <div class="board-column-title">Testing</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="3">
+                        <div id="${board.id}-board-status-testing" class="board-column-content" data-board-id="${board.id}" data-board-status="3">
                         </div>
                     </div>
                     <div class="board-column">
                         <div class="board-column-title">Done</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="4">
+                        <div id="${board.id}-board-status-done" class="board-column-content" data-board-id="${board.id}" data-board-status="4">
                         </div>
                     </div>
                 </div>
@@ -56,8 +56,13 @@ function boardBuilder(board) {
 }
 
 function cardBuilder(card) {
-    return `<div class="card" data-card-id="${card.id}" data-card-status="${card.status_id}">
-                <div class="card-remove"><i class="fas fa-trash-alt"></i></div>
+    console.log(card);
+    return `<div class="card" data-card-id="${card.id}" data-card-status="${card.status_id}" draggable="true">
+                <div class="card-remove">
+                    <i class="fas fa-trash-alt" data-card-id="${card.id}">
+                    
+                    </i>
+                </div>
                 <div class="card-title">${card.title}</div>
             </div>`;
 }
