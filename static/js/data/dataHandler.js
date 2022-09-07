@@ -46,7 +46,7 @@ async function apiPost(url, payload) {
         headers: {
             'Content-Type': 'applicant/json'
         }});
-    if (response.status === 200){
+    if (response.ok){
         return await response.json();
     }
 

@@ -38,8 +38,10 @@ def get_cards_for_board(board_id: int):
 @app.route('/api/cards/create', methods=['POST'])
 @json_response
 def create_card():
-    queries.create_card_for_board_status(request.json)
-    return render_template('index.html')
+    # user_data = queries.get_user_data()
+    # session['username'] = user_data['user_name']
+    # user_id = queries.get_user_id_by_name(session['username'])
+    return queries.create_card_for_board_status(request.json)
 
 
 def main():

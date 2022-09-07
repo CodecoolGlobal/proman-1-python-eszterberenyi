@@ -16,7 +16,7 @@ export let boardsManager = {
                 showHideButtonHandler
             );
             domManager.addEventListener(
-                `.board-add-button[board-data-id="${board.id}"]`,
+                `.board-add[data-board-id="${board.id}"]`,
                 'click',
                 createCardHandler
             )
@@ -32,7 +32,7 @@ function showHideButtonHandler(clickEvent) {
 function createCardHandler(clickEvent) {
     const createButton = clickEvent.target
     const boardId = createButton.dataset.boardId
-    const statusId = createButton.dataset.statusId
-    const title = createButton.previousElementSibling.value
+    const statusId = 1
+    const title = 'New card'
     dataHandler.createNewCard(title, boardId, statusId)
 }
