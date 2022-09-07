@@ -60,9 +60,9 @@ section.board {
 }
 
 .board-header {
-    height: 50px;
+    border-radius: 7px;
     background: #fff;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    /*border-radius: var(--border-radius) var(--border-radius) 0 0;*/
 }
 
 .board-title {
@@ -81,8 +81,10 @@ section.board {
 }
 
 .board-columns {
-    display: flex;
+    display: none;
+    width: 100%;
     flex-wrap: nowrap;
+    justify-content: center;
 }
 
 .board-column {
