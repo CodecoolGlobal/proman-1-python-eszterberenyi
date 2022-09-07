@@ -45,3 +45,13 @@ def delete_card(card_id):
         """
         , {'card_identifier': card_id}, False)
     return deleted_card
+
+
+def delete_board(board_id):
+    deleted_board = data_manager.execute_select(
+        """
+        DELETE FROM boards WHERE id = %(board_identifier)s
+        RETURNING id;
+        """
+        , {'board_identifier': board_id}, False)
+    return deleted_board

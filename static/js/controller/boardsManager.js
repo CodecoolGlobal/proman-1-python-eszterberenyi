@@ -15,6 +15,11 @@ export let boardsManager = {
                 "click",
                 showHideButtonHandler
             );
+            domManager.addEventListener(
+                `[data-board-id="${board.id}"]>.board-header>.board-remove`,
+                'click',
+                deleteButtonHandler
+            );
         }
     },
 };
@@ -22,4 +27,10 @@ export let boardsManager = {
 function showHideButtonHandler(clickEvent) {
     const boardId = clickEvent.target.dataset.boardId;
     cardsManager.loadCards(boardId);
+}
+
+function deleteButtonHandler(clickEvent) {
+    const board = clickEvent.currentTarget.parentNode.parentNode;
+    board.classList.add('inactive');
+    dataHandler.deleteBoard(board.dataset.boardId)
 }

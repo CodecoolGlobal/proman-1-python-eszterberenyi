@@ -5,6 +5,9 @@ export let dataHandler = {
     getBoard: async function (boardId) {
         // the board is retrieved and then the callback function is called with the board
     },
+    deleteBoard: async function(boardId) {
+        return await apiDelete(`/api/boards/${boardId}`)
+    },
     getStatuses: async function () {
         // the statuses are retrieved and then the callback function is called with the statuses
     },

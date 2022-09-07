@@ -23,6 +23,12 @@ def get_boards():
     return queries.get_boards()
 
 
+@app.route("/api/boards/<int:board_id>", methods=['GET', 'DELETE'])
+@json_response
+def delete_board(board_id: int):
+    return queries.delete_board(board_id)
+
+
 @app.route("/api/boards/<int:board_id>/cards/")
 @json_response
 def get_cards_for_board(board_id: int):
