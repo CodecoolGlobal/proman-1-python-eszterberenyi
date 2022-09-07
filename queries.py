@@ -49,21 +49,20 @@ def create_card_for_board_status(card):
     )
 
 
-# def get_user_data():
-#     data_manager.execute_select(
-#         """
-#             SELECT * FROM users;
-#         """
-#     )
-#
-#
-# def get_user_id_by_name(user_name):
-#     data_manager.execute_select(
-#         """
-#             SELECT id
-#             FROM users
-#             WHERE user_name=%(user_name)s
-#         """,
-#         {'user_name': user_name}
-#
-#     )
+def create_user(username, password):
+    new_user = data_manager.execute_select(
+        """
+        INSERT INTO users(user_name, password)
+        VALUES (%(name)s, %(pwd)s)
+        RETURNING id;
+        """, {"name": username, "pwd": password})
+    return new_user
+
+
+def get_user(username):
+    user = data_manager.execute_select(
+        """
+        SELECT * FROM users
+        WHERE user_name = %(name)s
+        """, {"name": username}, False)
+    return user
