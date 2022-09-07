@@ -43,11 +43,11 @@ def register():
             return redirect(url_for("register", attempt=response))
     return render_template("register.html")
 
+
 @app.route("/logout")
 def logout():
     session.clear()
     return render_template('index.html')
-
 
 
 @app.route("/api/boards")

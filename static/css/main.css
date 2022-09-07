@@ -33,7 +33,7 @@ h1,h3 {
     transform: scale(1.2, 1);
 }
 
-#error-message {
+#error-message, #error-message2 {
     font-size: 14px;
 }
 
