@@ -28,25 +28,25 @@ function boardBuilder(board) {
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </div>
-                <div class="board-columns">
+                <div class="board-columns" data-boardcolumns-id=${board.id} data-clicked="false">
                     <div class="board-column">
                         <div class="board-column-title">New</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="1">
+                        <div id="${board.id}-board-status-new" class="board-column-content" data-board-id="${board.id}" data-board-status="1">
                         </div>
                     </div>
                     <div class="board-column">
                         <div class="board-column-title">In progress</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="2">
+                        <div id="${board.id}-board-status-inprogress" class="board-column-content" data-board-id="${board.id}" data-board-status="2">
                         </div>
                     </div>
                     <div class="board-column">
                         <div class="board-column-title">Testing</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="3">
+                        <div id="${board.id}-board-status-testing" class="board-column-content" data-board-id="${board.id}" data-board-status="3">
                         </div>
                     </div>
                     <div class="board-column">
                         <div class="board-column-title">Done</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="4">
+                        <div id="${board.id}-board-status-done" class="board-column-content" data-board-id="${board.id}" data-board-status="4">
                         </div>
                     </div>
                 </div>
@@ -55,8 +55,12 @@ function boardBuilder(board) {
 
 function cardBuilder(card) {
     console.log(card);
-    return `<div class="card" data-card-id="${card.id}" data-card-status="${card.status_id}">
-                <div class="card-remove"><i class="fas fa-trash-alt"></i></div>
+    return `<div class="card" data-card-id="${card.id}" data-card-status="${card.status_id}" draggable="true">
+                <div class="card-remove">
+                    <i class="fas fa-trash-alt" data-card-id="${card.id}">
+                    
+                    </i>
+                </div>
                 <div class="card-title">${card.title}</div>
             </div>`;
 }
