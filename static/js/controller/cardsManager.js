@@ -14,9 +14,42 @@ export let cardsManager = {
                 "click",
                 deleteButtonHandler
             );
+            domManager.addEventListener(
+                `.card[data-card-id="${card.id}"]`,
+                'dragstart',
+                handleDragStart
+            );
+            domManager.addEventListener(
+                `.card[data-card-id="${card.id}"]`,
+                'dragend',
+                handleDragEnd
+            );
         }
     },
 };
 
 function deleteButtonHandler(clickEvent) {
 }
+
+
+function handleDragStart(e) {
+  this.style.opacity = '0.4';
+}
+
+function handleDragEnd(e) {
+  this.style.opacity = '1';
+}
+
+function handleDragOver(e) {
+    e.preventDefault();
+    return false;
+}
+
+function handleDragEnter(e) {
+    this.classList.add('over');
+}
+
+function handleDragLeave(e) {
+    this.classList.remove('over');
+}
+

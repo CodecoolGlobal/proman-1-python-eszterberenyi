@@ -20,6 +20,7 @@ body {
     padding-bottom: 20px;
     min-width: 620px;
     background: #ddd url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/diagonal-noise.png);
+    font-family: sans-serif;
 }
 
 h1,h3, .board-title, .board-column-title {
@@ -59,9 +60,13 @@ section.board {
 }
 
 .board-header {
-    height: 50px;
+    border-radius: 7px;
+    bottom: 7px;
+    display: flex;
     background: #fff;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .board-title {
@@ -80,8 +85,10 @@ section.board {
 }
 
 .board-columns {
-    display: flex;
+    display: none;
+    width: 100%;
     flex-wrap: nowrap;
+    justify-content: center;
 }
 
 .board-column {
@@ -178,4 +185,8 @@ section.board {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.fas {
+    margin-left: 5px;
 }
