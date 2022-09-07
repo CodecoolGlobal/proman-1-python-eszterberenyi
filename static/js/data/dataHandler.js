@@ -26,6 +26,7 @@ export let dataHandler = {
         card.cardTitle = cardTitle
         card.boardId = boardId
         card.statusId = statusId
+        console.log('card',card)
         await apiPost('/api/cards/create', card)
     },
 };
@@ -40,12 +41,14 @@ async function apiGet(url) {
 }
 
 async function apiPost(url, payload) {
+    console.log(url,payload)
     let response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
             'Content-Type': 'applicant/json'
         }});
+    console.log(payload)
     if (response.ok){
         return await response.json();
     }

@@ -31,8 +31,9 @@ function showHideButtonHandler(clickEvent) {
 
 function createCardHandler(clickEvent) {
     const createButton = clickEvent.target
-    const boardId = createButton.dataset.boardId
-    const statusId = 1
-    const title = 'New card'
-    dataHandler.createNewCard(title, boardId, statusId)
+    let boardId = createButton.dataset.boardId
+    let statusId = 1
+    let cardTitle = 'New card'
+    console.log('aaaaaa')
+    dataHandler.createNewCard(cardTitle, boardId, statusId)
 }

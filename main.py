@@ -1,12 +1,13 @@
+import mimetypes
 from datetime import timedelta
-from flask import Flask, render_template, url_for, session, request, redirect
+
 from dotenv import load_dotenv
+from flask import Flask, render_template, url_for, session, request, redirect
 from psycopg2.errors import UniqueViolation
 
+import queries
 import util
 from util import json_response
-import mimetypes
-import queries
 
 mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__)
@@ -75,7 +76,9 @@ def create_card():
     # user_data = queries.get_user_data()
     # session['username'] = user_data['user_name']
     # user_id = queries.get_user_id_by_name(session['username'])
-    return queries.create_card_for_board_status(request.json)
+    print('request', request.json)
+    queries.create_card_for_board_status(request.json)
+    return redirect(url_for('get_boards'))
 
 
 def main():
