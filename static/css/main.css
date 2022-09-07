@@ -131,3 +131,7 @@ section.board{
 .fas {
     margin-left: 5px;
 }
+
+.inactive {
+    display: none;
+}

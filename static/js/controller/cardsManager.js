@@ -19,6 +19,8 @@ export let cardsManager = {
 };
 
 function deleteButtonHandler(clickEvent) {
-    dataHandler.deleteCard(clickEvent.currentTarget.parentNode.dataset.cardId)
+    const card = clickEvent.currentTarget.parentNode;
+    card.classList.add('inactive');
+    dataHandler.deleteCard(card.dataset.cardId);
 }
 
