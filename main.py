@@ -33,6 +33,12 @@ def get_cards_for_board(board_id: int):
     return queries.get_cards_for_board(board_id)
 
 
+@app.route("/api/boards/<int:card_id>", methods=['GET', 'DELETE'])
+@json_response
+def delete_card(card_id: int):
+    return queries.delete_card(card_id)
+
+
 def main():
     app.run(debug=True)
 

@@ -54,7 +54,6 @@ function boardBuilder(board) {
 }
 
 function cardBuilder(card) {
-    console.log(card);
     return `<div class="card" data-card-id="${card.id}" data-card-status="${card.status_id}">
                 <div class="card-remove"><i class="fas fa-trash-alt"></i></div>
                 <div class="card-title">${card.title}</div>

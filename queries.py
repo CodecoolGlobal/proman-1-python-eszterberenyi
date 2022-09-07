@@ -35,3 +35,13 @@ def get_cards_for_board(board_id):
         , {"board_id": board_id})
 
     return matching_cards
+
+
+def delete_card(card_id):
+    deleted_card = data_manager.execute_select(
+        """
+        DELETE FROM cards WHERE id = %(card_identifier)s
+        RETURNING id;
+        """
+        , {'card_identifier': card_id}, False)
+    return deleted_card
