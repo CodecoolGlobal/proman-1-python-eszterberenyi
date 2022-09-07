@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const param = new URLSearchParams(document.location.search);
     const attempt = param.get('attempt');
     if (registerContainer !== null){
-         informUser(attempt, 'unsuccessful', errorMessagePlace1, 'Username already taken', registerContainer);
+        informUser(attempt, 'unsuccessful', errorMessagePlace1, 'Username already taken', registerContainer);
     } else {
         informUser(attempt, 'unsuccessful', errorMessagePlace2, 'Incorrect username or password', loginContainer)
     }
