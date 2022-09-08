@@ -87,7 +87,6 @@ def create_card():
     # user_data = queries.get_user_data()
     # session['username'] = user_data['user_name']
     # user_id = queries.get_user_id_by_name(session['username'])
-    print('request', request.json)
     return queries.create_card_for_board_status(request.json)
 
 
