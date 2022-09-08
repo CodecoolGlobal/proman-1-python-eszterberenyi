@@ -1,4 +1,5 @@
 import os
+
 import psycopg2
 import psycopg2.extras
 
@@ -29,7 +30,7 @@ def get_connection_data(db_name=None):
     """
     Give back a properly formatted dictionary based on the environment variables values which are started
     with :MY__PSQL_: prefix
-    :db_name: optional parameter. By default it uses the environment variable value.
+    :db_name: optional parameter.   By default, it uses the environment variable value.
     """
     if db_name is None:
         db_name = os.environ.get('MY_PSQL_DBNAME')

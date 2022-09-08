@@ -20,6 +20,11 @@ export let boardsManager = {
                 'click',
                 deleteButtonHandler
             );
+            domManager.addEventListener(
+                `.board-add[data-board-id="${board.id}"]`,
+                'click',
+                createCardHandler
+            )
         }
     },
 };
@@ -48,4 +53,12 @@ function deleteButtonHandler(clickEvent) {
     const board = clickEvent.currentTarget.parentNode.parentNode;
     board.classList.add('inactive');
     dataHandler.deleteBoard(board.dataset.boardId)
+}
+
+function createCardHandler(clickEvent) {
+    let boardId = clickEvent.target.dataset.boardId
+    let statusId = 1
+    let cardTitle = 'New card'
+    console.log('aaaaaa')
+    dataHandler.createNewCard(cardTitle, boardId, statusId)
 }
