@@ -20,6 +20,17 @@ export let boardsManager = {
                 'click',
                 createCardHandler
             )
+            domManager.addEventListener(
+                '.board-title',
+                'dblclick',
+                renameBoard
+            )
+            domManager.addEventListener(
+                '.card-title',
+                'dblclick',
+                renameCard
+
+            )
         }
     },
 };
@@ -35,4 +46,12 @@ function createCardHandler(clickEvent) {
     let cardTitle = 'New card'
     console.log('aaaaaa')
     dataHandler.createNewCard(cardTitle, boardId, statusId)
+}
+
+function renameBoard(clickEvent) {
+    let boardTitle = clickEvent.target.value
+}
+
+function renameCard(clickEvent) {
+    let cardTitle = clickEvent.target.value
 }
