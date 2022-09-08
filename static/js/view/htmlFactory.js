@@ -68,3 +68,8 @@ function cardBuilder(card) {
             </div>`;
 }
 
+
+function renameCard(card) {
+
+}
+

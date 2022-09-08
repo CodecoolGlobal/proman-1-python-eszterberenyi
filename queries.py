@@ -2,7 +2,6 @@ import data_manager
 
 
 def get_card_status(status_id):
-
     status = data_manager.execute_select(
         """
         SELECT * FROM statuses s
@@ -15,7 +14,6 @@ def get_card_status(status_id):
 
 
 def get_boards():
-
     return data_manager.execute_select(
         """
         SELECT * FROM boards
@@ -25,7 +23,6 @@ def get_boards():
 
 
 def get_cards_for_board(board_id):
-
     matching_cards = data_manager.execute_select(
         """
         SELECT * FROM cards
@@ -90,3 +87,18 @@ def delete_board(board_id):
         """
         , {'board_identifier': board_id}, False)
     return deleted_board
+
+
+def rename_card(card_id, card_title):
+    name_card = data_manager.execute_select(
+        """
+            UPDATE cards
+            SET title = %(card_title)s
+            WHERE id=%(card_id)s
+        """,
+        {
+            'card_title': card_title,
+            'card_id': card_id
+        }
+    )
+    return name_card

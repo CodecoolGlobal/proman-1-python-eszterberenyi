@@ -5,7 +5,7 @@ export let dataHandler = {
     getBoard: async function (boardId) {
         // the board is retrieved and then the callback function is called with the board
     },
-    deleteBoard: async function(boardId) {
+    deleteBoard: async function (boardId) {
         return await apiDelete(`/api/boards/${boardId}`)
     },
     getStatuses: async function () {
@@ -29,11 +29,19 @@ export let dataHandler = {
         card.cardTitle = cardTitle
         card.boardId = boardId
         card.statusId = statusId
-        console.log('card',card)
+        console.log('card', card)
         await apiPost('/api/cards/create', card)
     },
-    deleteCard: async function(cardId) {
+    deleteCard: async function (cardId) {
         return await apiDelete(`/api/boards/cards/${cardId}`)
+    },
+    renameCard: async function (cardID, cardTitle) {
+        let rename = {}
+
+        rename.cardId = cardID
+        rename.cardTitle = cardTitle
+        return await apiPost(`/api/boards/cards/${cardID}/rename`, rename)
+
     }
 };
 
@@ -47,15 +55,16 @@ async function apiGet(url) {
 }
 
 async function apiPost(url, payload) {
-    console.log(url,payload)
+    console.log(url, payload)
     let response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
             'Content-Type': 'application/json'
-        }});
+        }
+    });
     console.log(payload)
-    if (response.ok){
+    if (response.ok) {
         return await response.json();
     }
 

@@ -24,21 +24,20 @@ export let boardsManager = {
                 `.board-add[data-board-id="${board.id}"]`,
                 'click',
                 createCardHandler
-            )
-            domManager.addEventListener(
-                '.board-title',
-                'dblclick',
-                renameBoard
-            )
-            domManager.addEventListener(
-                `.card[data-card-id="${card.id}]`,
-                'dblclick',
-                renameCard
+            );
 
-            )
+            // domManager.addEventListener(
+            //     '.board-title',
+            //     'dblclick',
+            //     renameBoard
+            // );
+
         }
+
     },
+
 };
+
 
 function showHideButtonHandler(clickEvent) {
 
@@ -51,7 +50,7 @@ function showHideButtonHandler(clickEvent) {
     } else {
         const boardColumnContents = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`)
         boardColumnContents.forEach(function (boardColumnContent) {
-           boardColumnContent.replaceChildren()
+            boardColumnContent.replaceChildren()
         });
         columnsRow.style.display = "none";
         columnsRow.dataset.clicked = 'false';
@@ -72,12 +71,12 @@ function createCardHandler(clickEvent) {
     let cardTitle = 'New card'
     dataHandler.createNewCard(cardTitle, boardId, statusId)
     const boardColumnContents = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`)
-        boardColumnContents.forEach(function (boardColumnContent) {
-           boardColumnContent.replaceChildren()
-        });
+    boardColumnContents.forEach(function (boardColumnContent) {
+        boardColumnContent.replaceChildren()
+    });
     cardsManager.loadCards(boardId);
-        columnsRow.style.display = "flex";
-        columnsRow.dataset.clicked = 'true';
+    columnsRow.style.display = "flex";
+    columnsRow.dataset.clicked = 'true';
 }
 
 function renameBoard(clickEvent) {
@@ -85,7 +84,18 @@ function renameBoard(clickEvent) {
     console.log('title', boardTitle)
 }
 
-function renameCard(clickEvent) {
-    let cardId = clickEvent.currentTarget.dataset.cardId
-    console.log('title', cardId)
-}
+
+
+
+
+    // let cardId = document.querySelector(`.card[data-card-id="${card.id}]`)
+    // cardId.addEventListener('dblclick', (rename) => {
+    //     rename.target.innerHTML = `<input id="rename-card" type="text"/>`
+    //     let input = document.querySelector('input')
+    //     input.addEventListener('change', (change) => {
+    //         let currentCard = document.querySelector(`.card[data-card-id="${card.id}]`)
+    // dataHandler.renameCard(currentCard.dataset.cardId, change.currentTarget.value)
+    //     })
+    //
+    // })
+
