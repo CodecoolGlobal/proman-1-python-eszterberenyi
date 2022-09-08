@@ -11,6 +11,10 @@ export let boardsManager = {
             const boardBuilder = htmlFactory(htmlTemplates.board);
             const content = boardBuilder(board);
             domManager.addChild("#root", content);
+            const statusBuilder = htmlFactory(htmlTemplates.status);
+            const statuses = await dataHandler.getStatuses(board.id);
+            const columns = statusBuilder(board, statuses);
+            columns.forEach(column => domManager.addChild(`.board-columns[data-boardcolumns-id="${board.id}"]`, column));
             domManager.addEventListener(
                 `.toggle-board-button[data-board-id="${board.id}"]`,
                 "click",
@@ -26,10 +30,6 @@ export let boardsManager = {
                 'click',
                 createCardHandler
             );
-            const statusBuilder = htmlFactory(htmlTemplates.status);
-            const statuses = await dataHandler.getStatuses(board.id);
-            const columns = statusBuilder(board, statuses);
-            columns.forEach(column => domManager.addChild(`.board[data-board-id="${board.id}"]`, column));
         }
     },
 };

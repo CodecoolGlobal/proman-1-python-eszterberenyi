@@ -34,39 +34,16 @@ function boardBuilder(board) {
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </div>
-                <div class="board-columns" data-boardcolumns-id=${board.id} data-clicked="false">
-                    <div class="board-column">
-                        <div class="board-column-title">New</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="1">
-                        </div>
-                    </div>
-                    <div class="board-column">
-                        <div class="board-column-title">In progress</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="2">
-                        </div>
-                    </div>
-                    <div class="board-column">
-                        <div class="board-column-title">Testing</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="3">
-                        </div>
-                    </div>
-                    <div class="board-column">
-                        <div class="board-column-title">Done</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="4">
-                        </div>
-                    </div>
-                </div>
+                <div className="board-columns" data-boardcolumns-id=${board.id} data-clicked="false"></div>
             </section>`;
 }
 
 function statusBuilder(board, statuses) {
     const columns = [];
     for (let status of statuses) {
-        const column = `<div className="board-columns" data-boardcolumns-id=${board.id} data-clicked="false">
-                            <div className="board-column" data-column-status=${status.id}>
+        const column = `<div className="board-column" data-column-status=${status.id}>
                                 <div className="board-column-title">${status.title}</div>
                                 <div className="board-column-content" data-board-id="${board.id}" data-status=${status.id} data-order=${status.column_order}></div>
-                            </div>
                         </div>`
         columns.push(column)
     }
