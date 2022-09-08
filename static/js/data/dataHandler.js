@@ -41,7 +41,7 @@ export let dataHandler = {
         rename.cardId = cardId
         rename.cardTitle = cardTitle
         console.log('rename', rename)
-        return await apiPost('/api/cards/rename', rename)
+        return await apiPatch('/api/cards/rename', rename)
 
     }
 };
