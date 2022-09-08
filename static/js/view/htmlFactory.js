@@ -34,16 +34,17 @@ function boardBuilder(board) {
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </div>
-                <div className="board-columns" data-boardcolumns-id=${board.id} data-clicked="false"></div>
+                <div class="board-columns" data-boardcolumns-id=${board.id} data-clicked="false"></div>
             </section>`;
 }
 
 function statusBuilder(board, statuses) {
     const columns = [];
     for (let status of statuses) {
-        const column = `<div className="board-column" data-column-status=${status.id}>
-                                <div className="board-column-title">${status.title}</div>
-                                <div className="board-column-content" data-board-id="${board.id}" data-status=${status.id} data-order=${status.column_order}></div>
+        let title = capitalizeFirstLetter(status.title)
+        const column = `<div class="board-column" data-column-status=${status.id}>
+                                <div class="board-column-title">${title}</div>
+                                <div class="board-column-content" data-board-id="${board.id}" data-status=${status.id} data-order=${status.column_order}></div>
                         </div>`
         columns.push(column)
     }
@@ -61,3 +62,6 @@ function cardBuilder(card) {
             </div>`;
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
