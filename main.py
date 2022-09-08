@@ -82,10 +82,11 @@ def delete_card(card_id: int):
     return queries.delete_card(card_id)
 
 
-@app.route('/api/boards/cards/<int:card_id>/rename', methods=['POST', 'GET'])
+@app.route('/api/cards/rename', methods=['POST'])
 @json_response
 def rename_card():
-    return queries.rename_card(request.json)
+    print(request.json)
+    return queries.rename_card_title(request.json)
 
 
 @app.route('/api/cards/create', methods=['POST', 'GET'])

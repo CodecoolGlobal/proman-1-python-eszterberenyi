@@ -64,37 +64,20 @@ function handleDragLeave(e) {
 
 function renameCardHandler(clickEvent) {
     let cardId = clickEvent.currentTarget.parentNode.dataset.cardId
-    let cardTitle = clickEvent.target.innerHTML
+    let rename = document.querySelector('.card-title')
     let input = document.createElement('input')
     input.id = 'rename-card'
     input.type = 'text'
     input.placeholder = 'New name'
     this.appendChild(input)
-    input.addEventListener('keyup', (event) =>{
-        input.parentNode.removeChild(input)
+    input.addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
+            let cardTitle = input.value
+            let new_name = cardTitle
+            rename.innerHTML = new_name
+            // console.log('aaaaaaa', rename, cardId)
+            dataHandler.renameCard(cardId, rename.innerHTML)
+        }
     })
-
-
-    // input.focusin = function () {
-    //     cardTitle = input.value
-    //     let new_name = cardTitle
-    //     this.parentNode.innerHTML = new_name;
-    // }
-
-
-
-
-
-// let input = document.createElement('input')
-// input.onfocus = function () {
-//     cardTitle = input.value
-//     let new_name = cardTitle
-//     this.parentNode.innerHTML = new_name;
-// }
-// input.focusout()
-
-
-    console.log('aaaaaaa', cardTitle, cardId)
-    dataHandler.renameCard(cardId, cardTitle)
 }
 

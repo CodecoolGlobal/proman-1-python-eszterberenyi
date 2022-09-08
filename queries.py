@@ -89,16 +89,16 @@ def delete_board(board_id):
     return deleted_board
 
 
-def rename_card(card_id, card_title):
+def rename_card_title(rename):
     name_card = data_manager.execute_select(
         """
             UPDATE cards
             SET title = %(card_title)s
-            WHERE id=%(card_id)s
+            WHERE cards.id=%(card_id)s
         """,
         {
-            'card_title': card_title,
-            'card_id': card_id
+            'card_title': rename['cardTitle'],
+            'card_id': rename['cardId']
         }
     )
     return name_card
