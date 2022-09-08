@@ -49,6 +49,22 @@ def get_cards_for_board(board_id):
     return matching_cards
 
 
+def create_card_for_board_status(card):
+    return data_manager.execute_select(
+        """
+            INSERT INTO cards (board_id, status_id, title, user_id, card_order)
+            VALUES (%(board_id)s, %(status_id)s, %(title)s, 1, (SELECT
+            COALESCE(MAX(card_order),0)+1 FROM cards WHERE board_id=%(board_id)s AND status_id=%(status_id)s))
+            RETURNING id;
+        """,
+        {
+            'board_id': card['boardId'],
+            'status_id': card['statusId'],
+            'title': card['cardTitle'],
+        }
+    )
+
+
 def create_user(username, password):
     new_user = data_manager.execute_select(
         """

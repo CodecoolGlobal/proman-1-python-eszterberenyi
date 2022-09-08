@@ -21,6 +21,11 @@ export let boardsManager = {
                 'click',
                 deleteButtonHandler
             );
+            domManager.addEventListener(
+                `.board-add[data-board-id="${board.id}"]`,
+                'click',
+                createCardHandler
+            );
             const statusBuilder = htmlFactory(htmlTemplates.status);
             const statuses = await dataHandler.getStatuses(board.id);
             const columns = statusBuilder(board, statuses);
@@ -28,7 +33,6 @@ export let boardsManager = {
         }
     },
 };
-
 
 function showHideButtonHandler(clickEvent) {
 
@@ -46,7 +50,6 @@ function showHideButtonHandler(clickEvent) {
         columnsRow.style.display = "none";
         columnsRow.dataset.clicked = 'false';
     }
-    console.log('headje a kattintott tablenek', columnsRow)
 
 }
 
@@ -54,4 +57,19 @@ function deleteButtonHandler(clickEvent) {
     const board = clickEvent.currentTarget.parentNode.parentNode;
     board.classList.add('inactive');
     dataHandler.deleteBoard(board.dataset.boardId)
+}
+
+function createCardHandler(clickEvent) {
+    let boardId = clickEvent.target.dataset.boardId
+    const columnsRow = document.querySelector(`.board-columns[data-boardcolumns-id="${boardId}"]`)
+    let statusId = 1
+    let cardTitle = 'New card'
+    dataHandler.createNewCard(cardTitle, boardId, statusId)
+    const boardColumnContents = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`)
+        boardColumnContents.forEach(function (boardColumnContent) {
+           boardColumnContent.replaceChildren()
+        });
+    cardsManager.loadCards(boardId);
+        columnsRow.style.display = "flex";
+        columnsRow.dataset.clicked = 'true';
 }

@@ -1,10 +1,10 @@
-from datetime import timedelta
 from flask import Flask, render_template, url_for, session, request, redirect
-from dotenv import load_dotenv
 from psycopg2.errors import UniqueViolation
+from datetime import timedelta
+from dotenv import load_dotenv
+from util import json_response
 
 import util
-from util import json_response
 import mimetypes
 import queries
 
@@ -85,6 +85,15 @@ def get_cards_for_board(board_id: int):
 @json_response
 def delete_card(card_id: int):
     return queries.delete_card(card_id)
+
+
+@app.route('/api/cards/create', methods=['POST', 'GET'])
+@json_response
+def create_card():
+    # user_data = queries.get_user_data()
+    # session['username'] = user_data['user_name']
+    # user_id = queries.get_user_id_by_name(session['username'])
+    return queries.create_card_for_board_status(request.json)
 
 
 def main():
