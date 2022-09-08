@@ -64,28 +64,29 @@ section.board {
 }
 
 .board-header {
+    padding: 5px 5px;
     border-radius: 7px;
     bottom: 7px;
-    display: flex;
+    height: 50px;
     background: #fff;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .board-title {
-    margin: 13px;
-    display: inline-block;
-    font-size: 20px;
-}
-.board-title, .board-add, .board-toggle, .board-remove{
-    display: inline-block;
+    background: transparent;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+    vertical-align: middle;
 }
 
-.board-toggle, .board-remove{
+.board-remove {
     float: right;
-    margin: 13px;
 }
+
+.toggle-board-button {
+    float: right;
+}
+
 
 .board-columns {
     display: none;
@@ -188,8 +189,4 @@ section.board {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-}
-
-.fas {
-    margin-left: 5px;
 }
