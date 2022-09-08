@@ -94,6 +94,16 @@ def delete_card(card_id):
     return deleted_card
 
 
+def delete_column(status_id):
+    deleted_column = data_manager.execute_select(
+        """
+        DELETE FROM statuses WHERE id = %(status_id)s
+        RETURNING id;
+        """
+        , {'status_id': status_id}, False)
+    return deleted_column
+
+
 def delete_board(board_id):
     deleted_board = data_manager.execute_select(
         """

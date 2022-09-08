@@ -2,6 +2,7 @@ import {dataHandler} from "../data/dataHandler.js";
 import {htmlFactory, htmlTemplates} from "../view/htmlFactory.js";
 import {domManager} from "../view/domManager.js";
 import {cardsManager} from "./cardsManager.js";
+import {columnsManager} from "./columnsManager.js"
 
 export let boardsManager = {
     loadBoards: async function () {
@@ -14,6 +15,7 @@ export let boardsManager = {
             const statuses = await dataHandler.getStatuses(board.id);
             const columns = statusBuilder(board, statuses);
             columns.forEach(column => domManager.addChild(`.board-columns[data-boardcolumns-id="${board.id}"]`, column));
+            columnsManager.columnEvents();
             domManager.addEventListener(
                 `.toggle-board-button[data-board-id="${board.id}"]`,
                 "click",

@@ -9,10 +9,13 @@ export let dataHandler = {
         return await apiDelete(`/api/boards/${boardId}`)
     },
     getStatuses: async function (boardId) {
-        return await apiGet(`/api/statuses${boardId}`)
+        return await apiGet(`/api/statuses/${boardId}`)
     },
     getStatus: async function (statusId) {
         // the status is retrieved and then the callback function is called with the status
+    },
+    deleteStatus: async function(statusId) {
+        return await apiDelete(`/api/statuses/${statusId}`)
     },
     getCardsByBoardId: async function (boardId) {
         return await apiGet(`/api/boards/${boardId}/cards/`);
