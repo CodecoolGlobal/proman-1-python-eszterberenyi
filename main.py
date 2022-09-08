@@ -1,13 +1,12 @@
-import mimetypes
-from datetime import timedelta
-
-from dotenv import load_dotenv
 from flask import Flask, render_template, url_for, session, request, redirect
 from psycopg2.errors import UniqueViolation
-
-import queries
-import util
+from datetime import timedelta
+from dotenv import load_dotenv
 from util import json_response
+
+import util
+import mimetypes
+import queries
 
 mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__)
@@ -60,6 +59,12 @@ def get_boards():
     return queries.get_boards()
 
 
+@app.route("/api/boards/<int:board_id>", methods=['GET', 'DELETE'])
+@json_response
+def delete_board(board_id: int):
+    return queries.delete_board(board_id)
+
+
 @app.route("/api/boards/<int:board_id>/cards/")
 @json_response
 def get_cards_for_board(board_id: int):
@@ -68,6 +73,12 @@ def get_cards_for_board(board_id: int):
     :param board_id: id of the parent board
     """
     return queries.get_cards_for_board(board_id)
+
+
+@app.route("/api/boards/cards/<int:card_id>", methods=['GET', 'DELETE'])
+@json_response
+def delete_card(card_id: int):
+    return queries.delete_card(card_id)
 
 
 @app.route('/api/cards/create', methods=['POST', 'GET'])

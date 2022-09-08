@@ -10,6 +10,10 @@
     --status-4: #085900;
 }
 
+.inactive {
+    display: none;
+}
+
 
 .navbar {
     margin-bottom: 20px;
@@ -20,6 +24,7 @@ body {
     padding-bottom: 20px;
     min-width: 620px;
     background: #ddd url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/diagonal-noise.png);
+    font-family: sans-serif;
 }
 
 h1,h3, .board-title, .board-column-title {
@@ -59,29 +64,35 @@ section.board {
 }
 
 .board-header {
+    padding: 5px 5px;
+    border-radius: 7px;
+    bottom: 7px;
     height: 50px;
     background: #fff;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .board-title {
-    margin: 13px;
-    display: inline-block;
-    font-size: 20px;
+    background: transparent;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+    vertical-align: middle;
 }
 
-.board-title, .board-add, .board-toggle {
-    display: inline-block;
-}
-
-.board-toggle {
+.board-remove {
     float: right;
-    margin: 13px;
 }
+
+.toggle-board-button {
+    float: right;
+}
+
 
 .board-columns {
-    display: flex;
+    display: none;
+    width: 100%;
     flex-wrap: nowrap;
+    justify-content: center;
 }
 
 .board-column {

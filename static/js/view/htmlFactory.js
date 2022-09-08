@@ -22,9 +22,13 @@ export function htmlFactory(template) {
 
 function boardBuilder(board) {
     return `<section class="board" data-board-id=${board.id}>
-                <div class="board-header"><span class="board-title">${board.title}</span>
-                    <button class="board-add" data-board-id="${board.id}">Add Card</button>
-                    <button class="toggle-board-button board-toggle" data-board-id="${board.id}">Show Cards
+                <div class="board-header">
+                    <input class="board-title" value="${board.title}" disabled>
+                    <button class="board-add btn btn-dark" data-board-id="${board.id}">Add Card</button>
+                    <div class="board-remove btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <button class="toggle-board-button board-toggle btn btn-dark" data-board-id="${board.id}">Show Cards
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </div>
@@ -54,9 +58,12 @@ function boardBuilder(board) {
 }
 
 function cardBuilder(card) {
-    console.log(card);
-    return `<div class="card" data-card-id="${card.id}" data-card-status="${card.status_id}">
-                <div class="card-remove"><i class="fas fa-trash-alt"></i></div>
+    return `<div class="card" data-card-id="${card.id}" data-card-status="${card.status_id}" draggable="true">
+                <div class="card-remove">
+                    <i class="fas fa-trash-alt" data-card-id="${card.id}">
+                    
+                    </i>
+                </div>
                 <div class="card-title">${card.title}</div>
             </div>`;
 }
