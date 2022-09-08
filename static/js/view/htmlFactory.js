@@ -32,7 +32,7 @@ function boardBuilder(board) {
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </div>
-                <div class="board-columns">
+                <div class="board-columns" data-boardcolumns-id=${board.id} data-clicked="false">
                     <div class="board-column">
                         <div class="board-column-title">New</div>
                         <div class="board-column-content" data-board-id="${board.id}" data-board-status="1">
