@@ -31,7 +31,7 @@ export let boardsManager = {
                 renameBoard
             )
             domManager.addEventListener(
-                '.card-title',
+                `.card[data-card-id="${card.id}]`,
                 'dblclick',
                 renameCard
 
@@ -56,7 +56,6 @@ function showHideButtonHandler(clickEvent) {
         columnsRow.style.display = "none";
         columnsRow.dataset.clicked = 'false';
     }
-    console.log('headje a kattintott tablenek', columnsRow)
 
 }
 
@@ -87,6 +86,6 @@ function renameBoard(clickEvent) {
 }
 
 function renameCard(clickEvent) {
-    let cardTitle = clickEvent.currentTarget.value
-    console.log('title', cardTitle)
+    let cardId = clickEvent.currentTarget.dataset.cardId
+    console.log('title', cardId)
 }
