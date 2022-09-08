@@ -67,7 +67,7 @@ function renameCardHandler(clickEvent) {
     let input = document.createElement('input')
     input.id = 'rename-card'
     input.type = 'text'
-    input.placeholder = 'New name'
+    input.placeholder = rename.innerHTML
     this.appendChild(input)
     input.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {

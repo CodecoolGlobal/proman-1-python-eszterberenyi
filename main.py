@@ -78,6 +78,13 @@ def delete_board(board_id: int):
     return queries.delete_board(board_id)
 
 
+@app.route("/api/board/rename", methods=['GET', 'PATCH'])
+@json_response
+def rename_board():
+    print(request.json)
+    return queries.rename_board_title(request.json)
+
+
 @app.route("/api/boards/<int:board_id>/cards/")
 @json_response
 def get_cards_for_board(board_id: int):
@@ -94,7 +101,7 @@ def delete_card(card_id: int):
     return queries.delete_card(card_id)
 
 
-@app.route('/api/cards/rename', methods=['GET', 'PATCH'])
+@app.route('/api/card/rename', methods=['GET', 'PATCH'])
 @json_response
 def rename_card():
     print(request.json)

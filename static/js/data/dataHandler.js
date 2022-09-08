@@ -39,13 +39,21 @@ export let dataHandler = {
         return await apiDelete(`/api/boards/cards/${cardId}`)
     },
     renameCard: async function (cardId, cardTitle) {
-        let rename = {}
+        let rename_card = {}
 
-        rename.cardId = cardId
-        rename.cardTitle = cardTitle
-        console.log('rename', rename)
-        return await apiPatch('/api/cards/rename', rename)
+        rename_card.cardId = cardId
+        rename_card.cardTitle = cardTitle
+        console.log('rename', rename_card)
+        return await apiPatch('/api/card/rename', rename_card)
 
+    },
+    renameBoard: async function (boardId, boardTitle){
+        let rename_board = {}
+
+        rename_board.boardId = boardId
+        rename_board.boardTitle = boardTitle
+        console.log('rename', rename_board)
+        return await apiPatch('/api/board/rename', rename_board)
     }
 };
 

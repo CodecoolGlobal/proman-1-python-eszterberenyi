@@ -32,11 +32,11 @@ export let boardsManager = {
                 createCardHandler
             );
 
-            // domManager.addEventListener(
-            //     '.board-title',
-            //     'dblclick',
-            //     renameBoard
-            // );
+            domManager.addEventListener(
+                `.board-title[data-board-id="${board.id}"]`,
+                'dblclick',
+                renameBoard
+            );
 
         }
     },
@@ -53,7 +53,7 @@ function showHideButtonHandler(clickEvent) {
     } else {
         const boardColumnContents = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`)
         boardColumnContents.forEach(function (boardColumnContent) {
-           boardColumnContent.replaceChildren()
+            boardColumnContent.replaceChildren()
         });
         columnsRow.style.display = "none";
         columnsRow.dataset.clicked = 'false';
@@ -74,31 +74,52 @@ function createCardHandler(clickEvent) {
     let cardTitle = 'New card'
     dataHandler.createNewCard(cardTitle, boardId, statusId)
     const boardColumnContents = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`)
-        boardColumnContents.forEach(function (boardColumnContent) {
-           boardColumnContent.replaceChildren()
-        });
+    boardColumnContents.forEach(function (boardColumnContent) {
+        boardColumnContent.replaceChildren()
+    });
     cardsManager.loadCards(boardId);
-        columnsRow.style.display = "flex";
-        columnsRow.dataset.clicked = 'true';
+    columnsRow.style.display = "flex";
+    columnsRow.dataset.clicked = 'true';
 }
 
 function renameBoard(clickEvent) {
-    let boardTitle = clickEvent.currentTarget.value
-    console.log('title', boardTitle)
+    let boardId = clickEvent.target.dataset.boardId
+    let rename = document.querySelector('.board-title')
+    let input = document.createElement('input')
+    input.id = 'rename-board'
+    input.type = 'text'
+    input.placeholder = rename.innerHTML
+    this.appendChild(input)
+    input.addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
+            let boardTitle = input.value
+            let new_name = boardTitle
+            rename.innerHTML = new_name
+            console.log('aaaaaaa', rename, boardId)
+            dataHandler.renameBoard(boardId, rename.innerHTML)
+
+            // let cardId = clickEvent.currentTarget.parentNode.dataset.cardId
+            // let rename = document.querySelector('.card-title')
+            // let input = document.createElement('input')
+            // input.id = 'rename-card'
+            // input.type = 'text'
+            // input.placeholder = 'New name'
+            // this.appendChild(input)
+            // input.addEventListener('keyup', (event) => {
+            //     if (event.key === 'Enter') {
+            //         let cardTitle = input.value
+            //         let new_name = cardTitle
+            //         rename.innerHTML = new_name
+            //         // console.log('aaaaaaa', rename, cardId)
+            //         dataHandler.renameCard(cardId, rename.innerHTML)
+            //     }
+            // })
+
+
+        }
+    })
 }
 
 
 
-
-
-    // let cardId = document.querySelector(`.card[data-card-id="${card.id}]`)
-    // cardId.addEventListener('dblclick', (rename) => {
-    //     rename.target.innerHTML = `<input id="rename-card" type="text"/>`
-    //     let input = document.querySelector('input')
-    //     input.addEventListener('change', (change) => {
-    //         let currentCard = document.querySelector(`.card[data-card-id="${card.id}]`)
-    // dataHandler.renameCard(currentCard.dataset.cardId, change.currentTarget.value)
-    //     })
-    //
-    // })
 

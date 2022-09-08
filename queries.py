@@ -111,7 +111,7 @@ def delete_board(board_id):
     return deleted_board
 
 
-def rename_card_title(rename):
+def rename_card_title(rename_card):
     name_card = data_manager.execute_select(
         """
             UPDATE cards
@@ -120,8 +120,24 @@ def rename_card_title(rename):
             RETURNING id;
         """,
         {
-            'card_title': rename['cardTitle'],
-            'card_id': rename['cardId']
+            'card_title': rename_card['cardTitle'],
+            'card_id': rename_card['cardId']
         }
     )
     return name_card
+
+
+def rename_board_title(rename_board):
+    name_board = data_manager.execute_select(
+        """
+            UPDATE boards
+            SET title = %(board_title)s
+            WHERE id=%(board_id)s
+            RETURNING id;
+        """,
+        {
+            'board_title': rename_board['boardTitle'],
+            'board_id': rename_board['boardId']
+        }
+    )
+    return name_board
