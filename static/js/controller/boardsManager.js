@@ -75,9 +75,11 @@ function createCardHandler(clickEvent) {
 }
 
 function renameBoard(clickEvent) {
-    let boardTitle = clickEvent.target.value
+    let boardTitle = clickEvent.currentTarget.value
+    console.log('title', boardTitle)
 }
 
 function renameCard(clickEvent) {
-    let cardTitle = clickEvent.target.value
+    let cardTitle = clickEvent.currentTarget.value
+    console.log('title', cardTitle)
 }
