@@ -1,11 +1,13 @@
 export const htmlTemplates = {
     board: 1,
-    card: 2
+    card: 2,
+    status: 3
 }
 
 export const builderFunctions = {
     [htmlTemplates.board]: boardBuilder,
-    [htmlTemplates.card]: cardBuilder
+    [htmlTemplates.card]: cardBuilder,
+    [htmlTemplates.status]: statusBuilder
 };
 
 export function htmlFactory(template) {
@@ -32,29 +34,21 @@ function boardBuilder(board) {
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </div>
-                <div class="board-columns" data-boardcolumns-id=${board.id} data-clicked="false">
-                    <div class="board-column">
-                        <div class="board-column-title">New</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="1">
-                        </div>
-                    </div>
-                    <div class="board-column">
-                        <div class="board-column-title">In progress</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="2">
-                        </div>
-                    </div>
-                    <div class="board-column">
-                        <div class="board-column-title">Testing</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="3">
-                        </div>
-                    </div>
-                    <div class="board-column">
-                        <div class="board-column-title">Done</div>
-                        <div class="board-column-content" data-board-id="${board.id}" data-board-status="4">
-                        </div>
-                    </div>
-                </div>
+                <div class="board-columns" data-boardcolumns-id=${board.id} data-clicked="false"></div>
             </section>`;
+}
+
+function statusBuilder(board, statuses) {
+    const columns = [];
+    for (let status of statuses) {
+        let title = capitalizeFirstLetter(status.title)
+        const column = `<div class="board-column" data-column-status=${status.id}>
+                                <div class="board-column-title">${title} <i class="fas fa-trash-alt column-remove"></i></div>
+                                <div class="board-column-content" data-board-id="${board.id}" data-status=${status.id} data-order=${status.column_order}></div>
+                        </div>`
+        columns.push(column)
+    }
+    return columns
 }
 
 function cardBuilder(card) {
@@ -68,4 +62,6 @@ function cardBuilder(card) {
             </div>`;
 }
 
-
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

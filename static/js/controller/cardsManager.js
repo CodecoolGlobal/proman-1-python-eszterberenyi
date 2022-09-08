@@ -8,7 +8,7 @@ export let cardsManager = {
         for (let card of cards) {
             const cardBuilder = htmlFactory(htmlTemplates.card);
             const content = cardBuilder(card);
-            domManager.addChild(`.board-column-content[data-board-id="${boardId}"][data-board-status="${card.status_id}"]`, content);
+            domManager.addChild(`.board-column-content[data-board-id="${boardId}"][data-status="${card.status_id}"]`, content);
             domManager.addEventListener(
                 `.card[data-card-id="${card.id}"]>.card-remove`,
                 "click",
@@ -35,7 +35,6 @@ export let cardsManager = {
 
 function deleteButtonHandler(clickEvent) {
     const card = clickEvent.currentTarget.parentNode;
-    console.log(card)
     card.classList.add('inactive');
     dataHandler.deleteCard(card.dataset.cardId);
 }

@@ -13,6 +13,18 @@ def get_card_status(status_id):
     return status
 
 
+def get_statuses_for_board(board_id):
+    statuses = data_manager.execute_select(
+        """
+        SELECT * FROM statuses WHERE board_id = %(board_identifier)s
+        ORDER BY column_order
+        ;
+        """
+        , {'board_identifier': board_id}
+    )
+    return statuses
+
+
 def get_boards():
     return data_manager.execute_select(
         """
@@ -77,6 +89,16 @@ def delete_card(card_id):
         """
         , {'card_identifier': card_id}, False)
     return deleted_card
+
+
+def delete_column(status_id):
+    deleted_column = data_manager.execute_select(
+        """
+        DELETE FROM statuses WHERE id = %(status_id)s
+        RETURNING id;
+        """
+        , {'status_id': status_id}, False)
+    return deleted_column
 
 
 def delete_board(board_id):

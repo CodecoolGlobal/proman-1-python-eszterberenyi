@@ -60,6 +60,18 @@ def get_boards():
     return queries.get_boards()
 
 
+@app.route("/api/statuses/<int:board_id>")
+@json_response
+def get_statuses(board_id: int):
+    return queries.get_statuses_for_board(board_id)
+
+
+@app.route("/api/statuses/<int:status_id>", methods=['GET', 'DELETE'])
+@json_response
+def delete_column(status_id: int):
+    return queries.delete_column(status_id)
+
+
 @app.route("/api/boards/<int:board_id>", methods=['GET', 'DELETE'])
 @json_response
 def delete_board(board_id: int):
