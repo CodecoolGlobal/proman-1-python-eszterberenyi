@@ -2,6 +2,7 @@ import {dataHandler} from "../data/dataHandler.js";
 import {htmlFactory, htmlTemplates} from "../view/htmlFactory.js";
 import {domManager} from "../view/domManager.js";
 import {cardsManager} from "./cardsManager.js";
+// import {statusManager} from "./statusManager.js";
 
 export let boardsManager = {
     loadBoards: async function () {
@@ -20,9 +21,14 @@ export let boardsManager = {
                 'click',
                 deleteButtonHandler
             );
+            const statusBuilder = htmlFactory(htmlTemplates.status);
+            const statuses = await dataHandler.getStatuses(board.id);
+            const columns = statusBuilder(board, statuses);
+            columns.forEach(column => domManager.addChild(`.board[data-board-id="${board.id}"]`, column));
         }
     },
 };
+
 
 function showHideButtonHandler(clickEvent) {
 

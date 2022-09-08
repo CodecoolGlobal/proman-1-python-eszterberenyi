@@ -14,6 +14,18 @@ def get_card_status(status_id):
     return status
 
 
+def get_statuses_for_board(board_id):
+    statuses = data_manager.execute_select(
+        """
+        SELECT * FROM statuses WHERE board_id = %(board_identifier)s
+        ORDER BY column_order
+        ;
+        """
+        , {'board_identifier': board_id}
+    )
+    return statuses
+
+
 def get_boards():
 
     return data_manager.execute_select(
