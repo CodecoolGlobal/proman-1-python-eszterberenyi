@@ -89,7 +89,9 @@ function renameBoard(clickEvent) {
     input.id = 'rename-board'
     input.type = 'text'
     input.placeholder = rename.innerHTML
-    this.appendChild(input)
+    if (this.firstElementChild === null) {
+        this.appendChild(input)
+    }
     input.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
             let boardTitle = input.value
