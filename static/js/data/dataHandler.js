@@ -50,14 +50,12 @@ async function apiGet(url) {
 }
 
 async function apiPost(url, payload) {
-    console.log(url,payload)
     let response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
             'Content-Type': 'application/json'
         }});
-    console.log(payload)
     if (response.ok){
         return await response.json();
     }
