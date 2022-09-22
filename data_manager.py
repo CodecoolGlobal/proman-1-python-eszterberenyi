@@ -17,7 +17,6 @@ def establish_connection(connection_data=None):
         #                                                              connection_data['user'],
         #                                                              connection_data['host'],
         #                                                              connection_data['password'])
-
         connect_str = os.environ.get('DATABASE_URL')
         conn = psycopg2.connect(connect_str)
         conn.autocommit = True
