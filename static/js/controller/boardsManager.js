@@ -37,11 +37,11 @@ export let boardsManager = {
                 'dblclick',
                 renameBoard
             );
-            domManager.addEventListener(
-                `.board-column[data-column-status=${status.id}"]>.board-column-title`,
-                'dblclick',
-                renameColumn
-            )
+            // domManager.addEventListener(
+            //     `.board-column[data-column-status=${status.id}"]>.board-column-title`,
+            //     'dblclick',
+            //     renameColumn
+            // )
 
         }
     },
@@ -75,7 +75,7 @@ function deleteButtonHandler(clickEvent) {
 function createCardHandler(clickEvent) {
     let boardId = clickEvent.target.dataset.boardId
     const columnsRow = document.querySelector(`.board-columns[data-boardcolumns-id="${boardId}"]`)
-    let statusId = 1
+    let statusId = columnsRow.firstChild.dataset.columnStatus
     let cardTitle = 'New card'
     dataHandler.createNewCard(cardTitle, boardId, statusId)
     const boardColumnContents = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`)
