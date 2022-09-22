@@ -10,7 +10,7 @@ import util
 from util import json_response
 
 mimetypes.add_type('application/javascript', '.js')
-app = Flask(__name__)
+app = Flask('main')
 app.secret_key = b'\x1dH@\xb94\xc9\xb0\x8e\xd5\xa8\xfe\r\x00\x0c\xb4'
 app.permanent_session_lifetime = timedelta(minutes=30)
 load_dotenv()

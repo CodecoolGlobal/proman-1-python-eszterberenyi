@@ -48,7 +48,7 @@ function handleDragEnd(e) {
     this.style.opacity = '1';
 }
 
-function handleDragOver(e) {
+export function handleDragOver(e) {
     e.preventDefault();
     return false;
 }
