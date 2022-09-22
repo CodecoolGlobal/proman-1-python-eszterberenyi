@@ -64,23 +64,24 @@ function handleDragLeave(e) {
 
 function renameCardHandler(clickEvent) {
     let cardId = clickEvent.currentTarget.parentNode.dataset.cardId
-    // let cardSatus = clickEvent.currentTarget.parentNode.dataset.cardStatus
-    // let boardId = clickEvent.currentTarget.parentNode.parentNode.dataset.boardId
-    console.log(cardId)
     let rename = clickEvent.currentTarget
+    let currentName = rename.innerHTML
     let input = document.createElement('input')
     input.id = 'rename-card'
     input.type = 'text'
-    input.placeholder = rename.innerHTML
+    input.placeholder = currentName
     if (this.firstElementChild === null) {
         this.appendChild(input)
     }
     input.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
+            if (input.value === ''){
+                input.value = currentName
+                dataHandler.renameCard(cardId, input.value)
+            }
             let cardTitle = input.value
-            let new_name = cardTitle
-            rename.innerHTML = new_name
-            // console.log('aaaaaaa', rename, cardId)
+            let newName = cardTitle
+            rename.innerHTML = newName
             dataHandler.renameCard(cardId, rename.innerHTML)
         }
     })

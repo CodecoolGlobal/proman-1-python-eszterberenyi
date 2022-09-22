@@ -90,6 +90,7 @@ function createCardHandler(clickEvent) {
 function renameBoard(clickEvent) {
     let boardId = clickEvent.target.dataset.boardId
     let rename = clickEvent.currentTarget
+    let currentName = rename.innerHTML
     let input = document.createElement('input')
     input.id = 'rename-board'
     input.type = 'text'
@@ -99,10 +100,13 @@ function renameBoard(clickEvent) {
     }
     input.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
+            if (input.value === '') {
+                input.value = currentName
+                dataHandler.renameCard(boardId, input.value)
+            }
             let boardTitle = input.value
             let new_name = boardTitle
             rename.innerHTML = new_name
-            console.log('aaaaaaa', rename, boardId)
             dataHandler.renameBoard(boardId, rename.innerHTML)
         }
     })

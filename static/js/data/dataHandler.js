@@ -32,7 +32,6 @@ export let dataHandler = {
         card.cardTitle = cardTitle
         card.boardId = boardId
         card.statusId = statusId
-        console.log('card', card)
         await apiPost('/api/cards/create', card)
     },
     deleteCard: async function (cardId) {
@@ -43,7 +42,6 @@ export let dataHandler = {
 
         rename_card.cardId = cardId
         rename_card.cardTitle = cardTitle
-        console.log('rename', rename_card)
         return await apiPatch('/api/card/rename', rename_card)
 
     },
@@ -52,7 +50,6 @@ export let dataHandler = {
 
         rename_board.boardId = boardId
         rename_board.boardTitle = boardTitle
-        console.log('rename', rename_board)
         return await apiPatch('/api/board/rename', rename_board)
     }
     // renameColumn: async function ()
@@ -68,7 +65,6 @@ async function apiGet(url) {
 }
 
 async function apiPost(url, payload) {
-    console.log('apiPost', url, payload)
     let response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(payload),
@@ -76,7 +72,6 @@ async function apiPost(url, payload) {
             'Content-Type': 'application/json'
         }
     })
-    console.log('in response', payload);
 
     if (response.ok) {
         return await response.json();
@@ -97,7 +92,6 @@ async function apiPut(url) {
 }
 
 async function apiPatch(url, payload) {
-    console.log(url, payload)
     let response = await fetch(url, {
         method: 'PATCH',
         body: JSON.stringify(payload),
@@ -105,7 +99,6 @@ async function apiPatch(url, payload) {
             'Content-Type': 'application/json'
         }
     });
-    console.log(payload)
     if (response.ok) {
         return await response.json();
     }
