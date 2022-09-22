@@ -37,6 +37,11 @@ export let boardsManager = {
                 'dblclick',
                 renameBoard
             );
+            domManager.addEventListener(
+                `.board-column[data-column-status=${status.id}"]>.board-column-title`,
+                'dblclick',
+                renameColumn
+            )
 
         }
     },
@@ -84,7 +89,7 @@ function createCardHandler(clickEvent) {
 
 function renameBoard(clickEvent) {
     let boardId = clickEvent.target.dataset.boardId
-    let rename = document.querySelector('.board-title')
+    let rename = clickEvent.currentTarget
     let input = document.createElement('input')
     input.id = 'rename-board'
     input.type = 'text'
@@ -99,28 +104,15 @@ function renameBoard(clickEvent) {
             rename.innerHTML = new_name
             console.log('aaaaaaa', rename, boardId)
             dataHandler.renameBoard(boardId, rename.innerHTML)
-
-            // let cardId = clickEvent.currentTarget.parentNode.dataset.cardId
-            // let rename = document.querySelector('.card-title')
-            // let input = document.createElement('input')
-            // input.id = 'rename-card'
-            // input.type = 'text'
-            // input.placeholder = 'New name'
-            // this.appendChild(input)
-            // input.addEventListener('keyup', (event) => {
-            //     if (event.key === 'Enter') {
-            //         let cardTitle = input.value
-            //         let new_name = cardTitle
-            //         rename.innerHTML = new_name
-            //         // console.log('aaaaaaa', rename, cardId)
-            //         dataHandler.renameCard(cardId, rename.innerHTML)
-            //     }
-            // })
-
-
         }
     })
 }
+
+// function renameColumn(clickEvent) {
+//
+// }
+
+
 
 
 

@@ -116,7 +116,7 @@ def rename_card_title(rename_card):
         """
             UPDATE cards
             SET title = %(card_title)s
-            WHERE id=%(card_id)s
+            WHERE cards.id=%(card_id)s
             RETURNING id;
         """,
         {

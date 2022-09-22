@@ -14,7 +14,7 @@ export let dataHandler = {
     getStatus: async function (statusId) {
         // the status is retrieved and then the callback function is called with the status
     },
-    deleteStatus: async function(statusId) {
+    deleteStatus: async function (statusId) {
         return await apiDelete(`/api/statuses/${statusId}`)
     },
     getCardsByBoardId: async function (boardId) {
@@ -47,7 +47,7 @@ export let dataHandler = {
         return await apiPatch('/api/card/rename', rename_card)
 
     },
-    renameBoard: async function (boardId, boardTitle){
+    renameBoard: async function (boardId, boardTitle) {
         let rename_board = {}
 
         rename_board.boardId = boardId
@@ -55,6 +55,7 @@ export let dataHandler = {
         console.log('rename', rename_board)
         return await apiPatch('/api/board/rename', rename_board)
     }
+    // renameColumn: async function ()
 };
 
 async function apiGet(url) {
@@ -75,7 +76,7 @@ async function apiPost(url, payload) {
             'Content-Type': 'application/json'
         }
     })
-    console.log('in response',payload);
+    console.log('in response', payload);
 
     if (response.ok) {
         return await response.json();

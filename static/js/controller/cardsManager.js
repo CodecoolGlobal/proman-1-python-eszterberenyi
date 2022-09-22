@@ -63,8 +63,10 @@ function handleDragLeave(e) {
 
 function renameCardHandler(clickEvent) {
     let cardId = clickEvent.currentTarget.parentNode.dataset.cardId
-    // let statusId = clickEvent.currentTarget.parentNode.parentNode.parentNode.'ide kell a column-status-id'
-    let rename = document.querySelector('.card-title')
+    // let cardSatus = clickEvent.currentTarget.parentNode.dataset.cardStatus
+    // let boardId = clickEvent.currentTarget.parentNode.parentNode.dataset.boardId
+    console.log(cardId)
+    let rename = clickEvent.currentTarget
     let input = document.createElement('input')
     input.id = 'rename-card'
     input.type = 'text'
