@@ -104,7 +104,6 @@ def delete_card(card_id: int):
 @app.route('/api/card/rename', methods=['GET', 'PATCH'])
 @json_response
 def rename_card():
-    print(request.json)
     return queries.rename_card_title(request.json)
 
 
