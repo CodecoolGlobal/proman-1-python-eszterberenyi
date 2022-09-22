@@ -43,7 +43,7 @@ function statusBuilder(board, statuses) {
     for (let status of statuses) {
         let title = capitalizeFirstLetter(status.title)
         const column = `<div class="board-column" data-column-status=${status.id}>
-                                <div class="board-column-title">${title} <i class="fas fa-trash-alt column-remove"></i></div>
+                                <div class="board-column-title">${title} <i class="fas fa-trash-alt column-remove"></i> </div>
                                 <div class="board-column-content" data-board-id="${board.id}" data-status=${status.id} data-order=${status.column_order}></div>
                         </div>`
         columns.push(column)

@@ -37,11 +37,6 @@ export let boardsManager = {
                 'dblclick',
                 renameBoard
             );
-            // domManager.addEventListener(
-            //     `.board-column[data-column-status=${status.id}"]>.board-column-title`,
-            //     'dblclick',
-            //     renameColumn
-            // )
 
         }
     },
@@ -113,7 +108,30 @@ function renameBoard(clickEvent) {
 }
 
 // function renameColumn(clickEvent) {
+//     let columnStatusId = clickEvent.currentTarget.parentNode.dataset.statusId
+//     console.log(columnStatusId)
+//     let rename = clickEvent.currentTarget
+//     let currentName = rename.innerHTML
+//     // let input = document.createElement('input')
+//     // input.id = 'rename-column'
+//     // input.type = 'text'
+//     // input.placeholder = rename.innerHTML
+//     // if (this.firstElementChild === null) {
+//     //     this.appendChild(input)
+//     // }
+//     input.addEventListener('keyup', (event) => {
+//         if (event.key === 'Enter') {
+//             if (input.value === '') {
+//                 input.value = currentName
+//                 dataHandler.renameColumn(columnStatusId, rename.innerHTML)
+//             }
+//             let boardTitle = input.value
+//             let new_name = boardTitle
+//             rename.innerHTML = new_name
+//             dataHandler.renameColumn(columnStatusId, rename.innerHTML)
+//         }
 //
+//     }
 // }
 
 

@@ -51,8 +51,14 @@ export let dataHandler = {
         rename_board.boardId = boardId
         rename_board.boardTitle = boardTitle
         return await apiPatch('/api/board/rename', rename_board)
+    },
+    renameColumn: async function (columnStatusId, columnTitle) {
+        let rename_column = {}
+
+        rename_column.statusId = columnStatusId
+        rename_column.columnTitle = columnTitle
+        return await apiPatch('/api/column/rename', rename_column)
     }
-    // renameColumn: async function ()
 };
 
 async function apiGet(url) {
