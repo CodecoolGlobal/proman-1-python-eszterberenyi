@@ -70,7 +70,9 @@ function deleteButtonHandler(clickEvent) {
 async function createCardHandler(clickEvent) {
     let boardId = clickEvent.target.dataset.boardId
     const columnsRow = document.querySelector(`.board-columns[data-boardcolumns-id="${boardId}"]`)
+    console.log(columnsRow)
     let statusId = columnsRow.firstChild.dataset.columnStatus
+    console.log(statusId)
     let cardTitle = 'New card'
     await dataHandler.createNewCard(cardTitle, boardId, statusId)
     const boardColumnContents = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`)
