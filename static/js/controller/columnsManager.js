@@ -21,25 +21,27 @@ function deleteButtonHandler(clickEvent) {
 function renameColumnTitle(clickEvent) {
     let columnId = clickEvent.currentTarget.parentNode.dataset.columnStatus
     console.log(columnId)
-    let rename = clickEvent.currentTarget.innerText
-    console.log(rename)
-    console.log(this.children.length)
+    let rename = clickEvent.currentTarget
+    console.log(rename.innerText)
     let currentName = rename.innerText
     let input = document.createElement('input')
     input.id = 'rename-column'
     input.type = 'text'
-    input.placeholder = rename
+    input.placeholder = currentName
     if (this.children.length === 1) {
-        this.appendChild(input)
+        this.append(input)
     }
     input.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
             if (input.value === '') {
                 input.value = currentName
-                dataHandler.renameColumn(columnId, input.value)
+                rename.innerText = input.value
+                dataHandler.renameColumn(columnId, rename.innerText)
             }
-            let boardTitle = input.value
-            dataHandler.renameColumn(columnId, boardTitle)
+            let columnTitle = input.value
+            let newName = columnTitle
+            rename.innerText = newName
+            dataHandler.renameColumn(columnId, rename.innerText)
         }
 
     })
