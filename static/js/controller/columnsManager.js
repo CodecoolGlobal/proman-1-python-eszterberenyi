@@ -28,21 +28,18 @@ function renameColumnTitle(clickEvent) {
     let input = document.createElement('input')
     input.id = 'rename-column'
     input.type = 'text'
-    input.placeholder = rename.innerText
-    if (this.children.length === null) {
+    input.placeholder = rename
+    if (this.children.length === 1) {
         this.appendChild(input)
-    //    need to appen input !!!!!!!!!!!
     }
     input.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
             if (input.value === '') {
                 input.value = currentName
-                dataHandler.renameColumn(columnId, rename.innerHTML)
+                dataHandler.renameColumn(columnId, input.value)
             }
             let boardTitle = input.value
-            let new_name = boardTitle
-            rename.innerHTML = new_name
-            dataHandler.renameColumn(columnId, rename.innerHTML)
+            dataHandler.renameColumn(columnId, boardTitle)
         }
 
     })

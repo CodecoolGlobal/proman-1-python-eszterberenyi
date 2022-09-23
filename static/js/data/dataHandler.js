@@ -55,7 +55,7 @@ export let dataHandler = {
     renameColumn: async function (columnStatusId, columnTitle) {
         let rename_column = {}
 
-        rename_column.statusId = columnStatusId
+        rename_column.columnStatusId = columnStatusId
         rename_column.columnTitle = columnTitle
         return await apiPatch('/api/column/rename', rename_column)
     }
