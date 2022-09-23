@@ -12,7 +12,7 @@ export let columnsManager = {
 
 function deleteButtonHandler(clickEvent) {
     const column = clickEvent.currentTarget.parentNode.parentNode;
-    column.classList.add('inactive');
+    column.remove()
     dataHandler.deleteStatus(column.dataset.columnStatus)
 
 }
