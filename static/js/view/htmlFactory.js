@@ -26,13 +26,13 @@ function boardBuilder(board) {
     return `<section class="board" data-board-id=${board.id}>
                 <div class="board-header">
                     <div class="board-title" data-board-id=${board.id}>${board.title}</div>
-                    <button class="board-add btn btn-dark" data-board-id="${board.id}">Add Card</button>
+                    <button class="board-add btn btn-dark mx-auto" data-board-id="${board.id}">Add Card</button>
+                    <button class="toggle-board-button board-toggle btn btn-dark mx-xxl-5" data-board-id="${board.id}">Show Cards
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
                     <div class="board-remove btn">
                         <i class="fas fa-trash-alt"></i>
                     </div>
-                    <button class="toggle-board-button board-toggle btn btn-dark" data-board-id="${board.id}">Show Cards
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
                 </div>
                 <div class="board-columns" data-boardcolumns-id=${board.id} data-clicked="false"></div>
             </section>`;

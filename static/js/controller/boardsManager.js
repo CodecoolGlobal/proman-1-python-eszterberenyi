@@ -67,19 +67,17 @@ function deleteButtonHandler(clickEvent) {
     dataHandler.deleteBoard(board.dataset.boardId)
 }
 
-function createCardHandler(clickEvent) {
+async function createCardHandler(clickEvent) {
     let boardId = clickEvent.target.dataset.boardId
     const columnsRow = document.querySelector(`.board-columns[data-boardcolumns-id="${boardId}"]`)
     let statusId = columnsRow.firstChild.dataset.columnStatus
     let cardTitle = 'New card'
-    dataHandler.createNewCard(cardTitle, boardId, statusId)
+    await dataHandler.createNewCard(cardTitle, boardId, statusId)
     const boardColumnContents = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`)
     boardColumnContents.forEach(function (boardColumnContent) {
         boardColumnContent.replaceChildren()
     });
-    cardsManager.loadCards(boardId);
-    columnsRow.style.display = "flex";
-    columnsRow.dataset.clicked = 'true';
+    await cardsManager.loadCards(boardId);
 }
 
 function renameBoard(clickEvent) {
