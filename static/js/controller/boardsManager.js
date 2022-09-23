@@ -63,7 +63,7 @@ function showHideButtonHandler(clickEvent) {
 
 function deleteButtonHandler(clickEvent) {
     const board = clickEvent.currentTarget.parentNode.parentNode;
-    board.classList.add('inactive');
+    board.remove()
     dataHandler.deleteBoard(board.dataset.boardId)
 }
 
